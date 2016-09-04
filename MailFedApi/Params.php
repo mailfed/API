@@ -34,12 +34,12 @@
  */
  
  /**
- * MailFedApi_Params implements a collection that takes key-value pairs.
+ * MailWizzApi_Params implements a collection that takes key-value pairs.
  *
  * You can access, add or remove an item with a key by using
  * {@link itemAt}, {@link add}, and {@link remove}.
  * To get the number of the items in the map, use {@link getCount}.
- * MailFedApi_Params can also be used like a regular array as follows,
+ * MailWizzApi_Params can also be used like a regular array as follows,
  * <pre>
  * $map[$key]=$value; // add a key-value pair
  * unset($map[$key]); // remove the value with the specified key
@@ -49,20 +49,20 @@
  * </pre>
  *
  * @property boolean $readOnly Whether this map is read-only or not. Defaults to false.
- * @property MailFedApi_ParamsIterator $iterator An iterator for traversing the items in the list.
+ * @property MailWizzApi_ParamsIterator $iterator An iterator for traversing the items in the list.
  * @property integer $count The number of items in the map.
  * @property array $keys The key list.
  * 
  * @author Serban George Cristian
- * @link http://www.mailfed.com
- * @copyright 2013-2015 http://www.mailfed.com/
- * @package MailFedApi
+ * @link http://www.mailwizz.com
+ * @copyright 2013-2015 http://www.mailwizz.com/
+ * @package MailWizzApi
  * @since 1.0
  * 
  * Implementation based on CMapIterator class file from the Yii framework.
  * Please see /license/yiiframework.txt file for license info.
  */
-class MailFedApi_Params extends MailFedApi_Base implements IteratorAggregate,ArrayAccess,Countable
+class MailWizzApi_Params extends MailWizzApi_Base implements IteratorAggregate,ArrayAccess,Countable
 {
 	/**
 	 * @var array internal data storage
@@ -112,7 +112,7 @@ class MailFedApi_Params extends MailFedApi_Base implements IteratorAggregate,Arr
 	 */
 	public function getIterator()
 	{
-		return new MailFedApi_ParamsIterator($this->_data);
+		return new MailWizzApi_ParamsIterator($this->_data);
 	}
 
 	/**
@@ -235,7 +235,7 @@ class MailFedApi_Params extends MailFedApi_Base implements IteratorAggregate,Arr
 			if ($this->getCount()>0) {
 				$this->clear();
 			}	
-			if ($data instanceof MailFedApi_Params) {
+			if ($data instanceof MailWizzApi_Params) {
 				$data = $data->_data;
 			}	
 			foreach ($data as $key => $value) {
@@ -266,7 +266,7 @@ class MailFedApi_Params extends MailFedApi_Base implements IteratorAggregate,Arr
 	public function mergeWith($data, $recursive=true)
 	{
 		if (is_array($data) || $data instanceof Traversable) {
-			if ($data instanceof MailFedApi_Params) {
+			if ($data instanceof MailWizzApi_Params) {
 				$data = $data->_data;
 			}	
 			if ($recursive) {

@@ -1,23 +1,23 @@
 <?php
 /**
- * This file contains the configuration class for the MailFedApi PHP-SDK.
+ * This file contains the configuration class for the MailWizzApi PHP-SDK.
  *
- * @author Serban George Cristian 
- * @link http://www.mailfed.com/
- * @copyright 2013-2015 http://www.mailfed.com/
+ * @author Serban George Cristian <cristian.serban@mailwizz.com>
+ * @link http://www.mailwizz.com/
+ * @copyright 2013-2015 http://www.mailwizz.com/
  */
  
  
 /**
- * MailFedApi_Config contains the configuration class that is injected at runtime into the main application. 
+ * MailWizzApi_Config contains the configuration class that is injected at runtime into the main application. 
  * 
  * It's only purpose is to set the needed data so that the API calls will run without problems.
  * 
- * @author Serban George Cristian 
- * @package MailFedApi
+ * @author Serban George Cristian <cristian.serban@mailwizz.com>
+ * @package MailWizzApi
  * @since 1.0
  */
-class MailFedApi_Config extends MailFedApi_Base
+class MailWizzApi_Config extends MailWizzApi_Base
 {
     /**
      * @var string the api public key
@@ -57,7 +57,7 @@ class MailFedApi_Config extends MailFedApi_Base
      * Also, a basic url check is done, but you need to make sure the url is valid.
      * 
      * @param mixed $url
-     * @return MailFedApi_Config
+     * @return MailWizzApi_Config
      */
     public function setApiUrl($url)
     {

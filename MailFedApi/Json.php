@@ -60,16 +60,16 @@
  */
  
  /**
-  * MailFedApi_Json converts PHP data to and from JSON format.
+  * MailWizzApi_Json converts PHP data to and from JSON format.
   * 
   * @author	 Michal Migurski <mike-json@teczno.com>
   * @author	 Matt Knapp <mdknapp[at]gmail[dot]com>
   * @author	 Brett Stimmerman <brettstimmerman[at]gmail[dot]com>
   * 
-  * @package MailFedApi
+  * @package MailWizzApi
   * @since 1.0
   */
-class MailFedApi_Json
+class MailWizzApi_Json
 {
 	/**
 	 * Marker constant for JSON::decode(), used to flag stack state
@@ -121,7 +121,7 @@ class MailFedApi_Json
 
 			case 'string':
                 $charset = 'utf-8';
-                if (($config = MailFedApi_Base::getConfig())) {
+                if (($config = MailWizzApi_Base::getConfig())) {
                     $charset = $config->charset;
                 }
                 if (($enc=strtoupper($charset))!=='UTF-8')
@@ -256,14 +256,14 @@ class MailFedApi_Json
 				// treat as a JSON object
 				if (is_array($var) && count($var) && (array_keys($var) !== range(0, sizeof($var) - 1))) {
 					return '{' .
-						   join(',', array_map(array('MailFedApi_Json', 'nameValue'),
+						   join(',', array_map(array('MailWizzApi_Json', 'nameValue'),
 											   array_keys($var),
 											   array_values($var)))
 						   . '}';
 				}
 
 				// treat it like a regular array
-				return '[' . join(',', array_map(array('MailFedApi_Json', 'encode'), $var)) . ']';
+				return '[' . join(',', array_map(array('MailWizzApi_Json', 'encode'), $var)) . ']';
 
 			case 'object':
 				if ($var instanceof Traversable)
@@ -275,7 +275,7 @@ class MailFedApi_Json
 				else
 					$vars = get_object_vars($var);
 				return '{' .
-					   join(',', array_map(array('MailFedApi_Json', 'nameValue'),
+					   join(',', array_map(array('MailWizzApi_Json', 'nameValue'),
 										   array_keys($vars),
 										   array_values($vars)))
 					   . '}';

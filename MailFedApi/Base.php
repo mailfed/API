@@ -1,21 +1,21 @@
 <?php
 /**
- * This file contains the base class for the MailFedApi PHP-SDK.
+ * This file contains the base class for the MailWizzApi PHP-SDK.
  *
- * @author Serban George Cristian 
- * @link http://www.mailfed.com/
- * @copyright 2013-2015 http://www.mailfed.com/
+ * @author Serban George Cristian <cristian.serban@mailwizz.com>
+ * @link http://www.mailwizz.com/
+ * @copyright 2013-2015 http://www.mailwizz.com/
  */
  
  
 /**
- * MailFedApi_Base is the base class for all the other classes used in the sdk.
+ * MailWizzApi_Base is the base class for all the other classes used in the sdk.
  * 
- * @author Serban George Cristian 
- * @package MailFedApi
+ * @author Serban George Cristian <cristian.serban@mailwizz.com>
+ * @package MailWizzApi
  * @since 1.0
  */
-class MailFedApi_Base
+class MailWizzApi_Base
 {
     /**
      * Marker for before send request event
@@ -28,26 +28,26 @@ class MailFedApi_Base
     const EVENT_AFTER_SEND_REQUEST = 'afterSendRequest';
     
     /**
-     * @var MailFedApi_Config the configuration object injected into the application at runtime  
+     * @var MailWizzApi_Config the configuration object injected into the application at runtime  
      */
     private static $_config;
     
     /**
-     * @var MailFedApi_Params the package registry that will hold various components
+     * @var MailWizzApi_Params the package registry that will hold various components
      */
     private static $_registry = array();
     
     /**
-     * @var MailFedApi_Params the registered event handlers
+     * @var MailWizzApi_Params the registered event handlers
      */
     private static $_eventHandlers = array();
     
     /**
      * Inject the configuration into the sdk
      * 
-     * @param MailFedApi_Config $config
+     * @param MailWizzApi_Config $config
      */
-    public static function setConfig(MailFedApi_Config $config)
+    public static function setConfig(MailWizzApi_Config $config)
     {
         self::$_config = $config;
     }
@@ -55,7 +55,7 @@ class MailFedApi_Base
     /**
      * Returns the configuration object
      * 
-     * @return MailFedApi_Config
+     * @return MailWizzApi_Config
      */
     public static function getConfig()
     {
@@ -67,7 +67,7 @@ class MailFedApi_Base
      * 
      * @param string $key
      * @param mixed $value
-     * @return MailFedApi_Base
+     * @return MailWizzApi_Base
      */
     public function addToRegistry($key, $value)
     {
@@ -78,12 +78,12 @@ class MailFedApi_Base
     /**
      * Get the current registry object
      * 
-     * @return MailFedApi_Params
+     * @return MailWizzApi_Params
      */
     public function getRegistry()
     {
-        if (!(self::$_registry instanceof MailFedApi_Params)) {
-            self::$_registry = new MailFedApi_Params(self::$_registry);
+        if (!(self::$_registry instanceof MailWizzApi_Params)) {
+            self::$_registry = new MailWizzApi_Params(self::$_registry);
         }
         return self::$_registry;
     }
@@ -97,7 +97,7 @@ class MailFedApi_Base
      * <pre>
      * $components = array(
      *     'cache'=>array(
-     *         'class'             => 'MailFedApi_Cache_Sqlite',
+     *         'class'             => 'MailWizzApi_Cache_Sqlite',
      *         'connectionString'  => 'sqlite:/absolute/path/to/your/sqlite.db',
      *     ),
      * );
@@ -108,7 +108,7 @@ class MailFedApi_Base
      * it will get overriden by the second one.
      * 
      * @param array $components
-     * @return MailFedApi_Base
+     * @return MailWizzApi_Base
      */
     public function setComponents(array $components)
     {
@@ -126,7 +126,7 @@ class MailFedApi_Base
      * 
      * <pre>
      * $context->setComponent('cache', array(
-     *    'class'             => 'MailFedApi_Cache_Sqlite',    
+     *    'class'             => 'MailWizzApi_Cache_Sqlite',    
      *    'connectionString'  => 'sqlite:/absolute/path/to/your/sqlite.db',    
      * ));
      * </pre>
@@ -136,7 +136,7 @@ class MailFedApi_Base
      * 
      * @param string $componentName the name of the component accessed later via $context->componentName
      * @param array $config the component configuration array
-     * @return MailFedApi_Base
+     * @return MailWizzApi_Base
      */
     public function setComponent($componentName, array $config)
     {
@@ -144,7 +144,7 @@ class MailFedApi_Base
             throw new Exception('Please set the class property for "'.htmlspecialchars($componentName, ENT_QUOTES, $this->getConfig()->getCharset()).'" component.');
         }
         $component = new $config['class'];
-        if ($component instanceof MailFedApi_Base) {
+        if ($component instanceof MailWizzApi_Base) {
             $component->populateFromArray($config);
         } else {
             unset($config['class']);
@@ -177,7 +177,7 @@ class MailFedApi_Base
      * </pre>
      * 
      * @param array $eventHandlers
-     * @return MailFedApi_Base
+     * @return MailWizzApi_Base
      */
     public function setEventHandlers(array $eventHandlers)
     {
@@ -204,16 +204,16 @@ class MailFedApi_Base
      * Return a list of callbacks/event handlers for the given event
      * 
      * @param string $eventName
-     * @return MailFedApi_Params
+     * @return MailWizzApi_Params
      */
     public function getEventHandlers($eventName) 
     {
-        if (!(self::$_eventHandlers instanceof MailFedApi_Params)) {
-            self::$_eventHandlers = new MailFedApi_Params(self::$_eventHandlers);
+        if (!(self::$_eventHandlers instanceof MailWizzApi_Params)) {
+            self::$_eventHandlers = new MailWizzApi_Params(self::$_eventHandlers);
         }
         
-        if (!self::$_eventHandlers->contains($eventName) || !(self::$_eventHandlers->itemAt($eventName) instanceof MailFedApi_Params)) {
-            self::$_eventHandlers->add($eventName, new MailFedApi_Params());
+        if (!self::$_eventHandlers->contains($eventName) || !(self::$_eventHandlers->itemAt($eventName) instanceof MailWizzApi_Params)) {
+            self::$_eventHandlers->add($eventName, new MailWizzApi_Params());
         }
         
         return self::$_eventHandlers->itemAt($eventName);
@@ -223,7 +223,7 @@ class MailFedApi_Base
      * Remove all the event handlers bound to the event name
      * 
      * @param string $eventName
-     * @return MailFedApi_Base
+     * @return MailWizzApi_Base
      */
     public function removeEventHandlers($eventName)
     {
@@ -236,7 +236,7 @@ class MailFedApi_Base
      * all the setters matching the array keys with the array values
      * 
      * @param mixed $params
-     * @return MailFedApi_Base
+     * @return MailWizzApi_Base
      */
     protected function populateFromArray(array $params = array())
     {

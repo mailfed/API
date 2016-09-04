@@ -19,20 +19,20 @@
  */
 
 /**
- * MailFedApi_ParamsIterator implements an interator for {@link MailFedApi_Params}.
+ * MailWizzApi_ParamsIterator implements an interator for {@link MailWizzApi_Params}.
  *
- * It allows MailFedApi_Params to return a new iterator for traversing the items in the map.
+ * It allows MailWizzApi_Params to return a new iterator for traversing the items in the map.
  * 
  * @author Serban George Cristian
- * @link http://www.mailfed.com
- * @copyright 2013-2015 http://www.mailfed.com/
- * @package MailFedApi
+ * @link http://www.mailwizz.com
+ * @copyright 2013-2015 http://www.mailwizz.com/
+ * @package MailWizzApi
  * @since 1.0
  * 
  * Implementation based on CMapIterator class file from the Yii framework.
  * Please see /license/yiiframework.txt file for license info.
  */
-class MailFedApi_ParamsIterator implements Iterator
+class MailWizzApi_ParamsIterator implements Iterator
 {
 	/**
 	 * @var array the data to be iterated through
