@@ -1,17 +1,17 @@
 <?php
 /**
- * This file contains examples for using the MailFedApi PHP-SDK.
+ * This file contains examples for using the MailWizzApi PHP-SDK.
  *
- * @author Serban George Cristian 
- * @link http://www.mailfed.com/
- * @copyright 2013-2015 http://www.mailfed.com/
+ * @author Serban George Cristian <cristian.serban@mailwizz.com>
+ * @link http://www.mailwizz.com/
+ * @copyright 2013-2015 http://www.mailwizz.com/
  */
- 
+
 // require the setup which has registered the autoloader
 require_once dirname(__FILE__) . '/setup.php';
 
 // CREATE THE ENDPOINT
-$endpoint = new MailFedApi_Endpoint_ListSubscribers();
+$endpoint = new MailWizzApi_Endpoint_ListSubscribers();
 
 /*===================================================================================*/
 
@@ -37,6 +37,16 @@ echo '</pre>';
 
 // SEARCH BY EMAIL
 $response = $endpoint->emailSearch('LIST-UNIQUE-ID', 'john.doe@doe.com');
+
+// DISPLAY RESPONSE
+echo '<hr /><pre>';
+print_r($response->body);
+echo '</pre>';
+
+/*===================================================================================*/
+
+// SEARCH BY EMAIL IN ALL LISTS
+$response = $endpoint->emailSearchAllLists('john.doe@doe.com');
 
 // DISPLAY RESPONSE
 echo '<hr /><pre>';

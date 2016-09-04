@@ -1,17 +1,17 @@
 <?php
 /**
- * This file contains examples for using the MailFedApi PHP-SDK.
+ * This file contains examples for using the MailWizzApi PHP-SDK.
  *
- * @author Serban George Cristian 
- * @link http://www.mailfed.com/
- * @copyright 2013-2015 http://www.mailfed.com/
+ * @author Serban George Cristian <cristian.serban@mailwizz.com>
+ * @link http://www.mailwizz.com/
+ * @copyright 2013-2015 http://www.mailwizz.com/
  */
  
 // require the setup which has registered the autoloader
 require_once dirname(__FILE__) . '/setup.php';
 
 // create the lists endpoint:
-$endpoint = new MailFedApi_Endpoint_Lists();
+$endpoint = new MailWizzApi_Endpoint_Lists();
 
 // update list
 // please see countries.php example file for a list of allowed countries/zones for list company
